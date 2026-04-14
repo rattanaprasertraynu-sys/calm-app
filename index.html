@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Calm Space</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <h1>🌿 Calm Space</h1>
+  <p class="subtitle">พื้นที่เล็ก ๆ ให้คุณได้พักใจ</p>
+
+  <textarea id="userInput" placeholder="ลองพิมพ์ออกมาได้เลย..."></textarea>
+  <button class="primary" onclick="handleSubmit()">ระบายออกมา</button>
+
+  <div id="response" class="card hidden"></div>
+
+  <!-- 🌸 Bloom Check -->
+  <div id="flowerCheck" class="card hidden">
+    <p>ตอนนี้ความรู้สึกของคุณ<br>ใกล้เคียงกับดอกไม้แบบไหน 🌿</p>
+
+    <div class="flower-group">
+      <button onclick="handleFlower('seed')">🌱<span>อ่อนล้า</span></button>
+      <button onclick="handleFlower('leaf')">🌿<span>นิ่ง ๆ</span></button>
+      <button onclick="handleFlower('blossom')">🌸<span>ดีขึ้น</span></button>
+      <button onclick="handleFlower('sunflower')">🌻<span>พร้อมไปต่อ</span></button>
+    </div>
+  </div>
+
+  <!-- Feedback -->
+  <div id="feedback" class="card hidden">
+    <p>ช่วยเราปรับปรุงหน่อยได้ไหม 💛</p>
+    <textarea id="feedbackText"></textarea>
+    <button onclick="submitFeedback()">ส่ง feedback</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

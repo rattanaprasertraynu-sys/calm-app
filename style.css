@@ -1,0 +1,20 @@
+.flower-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.flower-group button {
+  padding: 15px;
+  border-radius: 12px;
+  background: #f8f9fb;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.flower-group span {
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+}
