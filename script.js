@@ -4,7 +4,7 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzKRkJk_i3XLIpL0XPVRUiW
 let userMessage = "";
 let userFeeling = "";
 
-// STEP 1: รับ input
+// STEP 1
 function handleSubmit() {
   const input = document.getElementById("userInput").value;
   userMessage = input;
@@ -15,7 +15,7 @@ function handleSubmit() {
   showElement("flowerCheck");
 }
 
-// STEP 2: reflection logic (phase 1 = rule-based)
+// STEP 2
 function getReflection(text) {
   text = text.toLowerCase();
 
@@ -30,14 +30,15 @@ function getReflection(text) {
   return "ขอบคุณที่เล่าให้ฟังนะ\nฟังดูแล้วมันมีหลายอย่างอยู่ในนั้นเลย";
 }
 
-// STEP 3: เลือก flower
-function handleFlower(flower) {
+// STEP 3
+function handleFlower(flower, event) {
   userFeeling = flower;
-// 🔥 add selected state
-document.querySelectorAll(".flower-group button")
-.forEach(btn => btn.classList.remove("selected"));
 
-event.target.classList.add("selected");
+  document.querySelectorAll(".flower-group button")
+    .forEach(btn => btn.classList.remove("selected"));
+
+  event.target.classList.add("selected");
+
   const messageMap = {
     seed: "แม้จะเหนื่อย แต่คุณยังยืนอยู่ตรงนี้ได้ เก่งมากเลยนะ",
     leaf: "ไม่เป็นไรนะ บางช่วงมันก็แค่ยังนิ่งอยู่",
@@ -49,9 +50,16 @@ event.target.classList.add("selected");
   showElement("feedback");
 }
 
-// STEP 4: ส่ง data
+// STEP 4
 function submitFeedback() {
   const feedback = document.getElementById("feedbackText").value;
+
+  if (!userFeeling) {
+    alert("เลือกความรู้สึกก่อนน้า 🌿");
+    return;
+  }
+
+  alert("กำลังส่งข้อมูล... ⏳");
 
   fetch(API_URL, {
     method: "POST",
@@ -68,11 +76,12 @@ function submitFeedback() {
   .then(data => {
     console.log("Saved:", data);
     alert("ขอบคุณสำหรับ feedback 🌸");
+    location.reload();
   })
   .catch(err => console.error(err));
 }
 
-// UI helper
+// UI
 function showElement(id) {
   const el = document.getElementById(id);
   el.style.display = "block";
@@ -94,8 +103,3 @@ function showText(id, text, append = false) {
     el.innerText = text;
   }
 }
-
-
-
-
-
