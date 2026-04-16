@@ -9,11 +9,8 @@ function handleSubmit() {
   const input = document.getElementById("inputText").value;
   userMessage = input;
   const reflection = getReflection(input);
-
-  showText("response", reflection);
-  showElement("flowerCheck");
-}
-
+showText("responseBox", reflection);
+showElement("optionsBox");}
 // STEP 2
 function getReflection(text) {
   text = text.toLowerCase();
@@ -46,7 +43,7 @@ function handleFlower(flower, event) {
   };
 
   showText("response", "\n\n" + messageMap[flower], true);
-  showElement("feedback");
+  showElement("feedbackBox");
 }
 
 // STEP 4
