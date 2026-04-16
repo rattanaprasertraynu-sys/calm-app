@@ -1,20 +1,119 @@
+/* 🌸 Base */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #f9fafc 0%, #eef2ff 100%);
+  color: #1f2937;
+}
+
+/* 🧠 Card / Container */
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* 🌿 Options */
+.option {
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f5f7fb, #eef2ff);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+.selected {
+border: 2px solid #6366f1;
+background: #eef2ff;
+}
+.option:hover {
+  transform: translateY(-6px) scale(1.03);
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
+  border: 1px solid #c7d2fe;
+}
+
+/* 🌸 Flower buttons */
 .flower-group {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 14px;
+  margin-top: 12px;
 }
 
 .flower-group button {
-  padding: 15px;
-  border-radius: 12px;
-  background: #f8f9fb;
+  padding: 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffffff, #f3f4f6);
   border: none;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 24px;
+  transition: all 0.25s ease;
 }
 
+.flower-group button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* 🌼 Flower label */
 .flower-group span {
   display: block;
   font-size: 12px;
-  margin-top: 5px;
+  margin-top: 6px;
+  color: #6b7280;
+}
+/* 💬 Response text */
+.response, .final {
+  animation: fadeInUp 0.6s ease;
+  line-height: 1.6;
+  font-size: 15px;
+  color: #374151;
+}
+
+/* ✨ Soft animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🌸 Input */
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: #a5b4fc;
+  box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.2);
+}
+
+/* 🌟 Button */
+button.primary {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #818cf8);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
 }

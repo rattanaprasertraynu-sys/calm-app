@@ -1,43 +1,184 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+<link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <title>Calm Space</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+
+  <style>
+
+
+
+    body {
+      margin: 0;
+      font-family: 'Prompt', sans-serif;
+      background: linear-gradient(180deg, #f8fafc, #eef2f7);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: none;
+      background: #6366f1;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .response {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f5f7fb;
+      border-radius: 12px;
+      display: none;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .option {
+      padding: 16px;
+      border-radius: 16px;
+      background: #f5f7fb;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option:hover {
+      transform: translateY(-3px);
+      background: #eef2ff;
+    }
+
+    .final {
+      margin-top: 20px;
+      display: none;
+      color: #555;
+    }
+
+    .feedback {
+      margin-top: 20px;
+      display: none;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="container">
-
+<div class="container card">
   <h1>🌿 Calm Space</h1>
-  <p class="subtitle">พื้นที่เล็ก ๆ ให้คุณได้พักใจ</p>
+  <p>พื้นที่ปลอดภัยสำหรับคุณ 🤍 ระบายออกมาได้เลย ไม่มีใครตัดสิน</p>
 
-  <textarea id="userInput" placeholder="ลองพิมพ์ออกมาได้เลย..."></textarea>
-  <button class="primary" onclick="handleSubmit()">ระบายออกมา</button>
+  <textarea id="inputText" rows="4" placeholder="วันนี้เกิดอะไรขึ้น..."></textarea>
+  <button onclick="submitText()">ระบายออกมา</button>
 
-  <div id="response" class="card hidden"></div>
-
-  <!-- 🌸 Bloom Check -->
-  <div id="flowerCheck" class="card hidden">
-    <p>ตอนนี้ความรู้สึกของคุณ<br>ใกล้เคียงกับดอกไม้แบบไหน 🌿</p>
-
-    <div class="flower-group">
-      <button onclick="handleFlower('seed')">🌱<span>อ่อนล้า</span></button>
-      <button onclick="handleFlower('leaf')">🌿<span>นิ่ง ๆ</span></button>
-      <button onclick="handleFlower('blossom')">🌸<span>ดีขึ้น</span></button>
-      <button onclick="handleFlower('sunflower')">🌻<span>พร้อมไปต่อ</span></button>
-    </div>
+  <div class="response" id="responseBox"></div>
+  <div class="options" id="optionsBox">
+    <div class="option" onclick="selectOption(event, 'tired')">🌱 รู้สึกเบาลงนิดหน่อย</div>
+    <div class="option" onclick="selectOption(event, 'calm')">🌿 ใจเริ่มนิ่งขึ้น</div>
+    <div class="option" onclick="selectOption(event, 'better')">🌸 รู้สึกดีขึ้น</div>
+    <div class="option" onclick="selectOption(event, 'ready')">🌻 พร้อมก้าวต่อ</div>
   </div>
 
-  <!-- Feedback -->
-  <div id="feedback" class="card hidden">
-    <p>ช่วยเราปรับปรุงหน่อยได้ไหม 💛</p>
-    <textarea id="feedbackText"></textarea>
-    <button onclick="submitFeedback()">ส่ง feedback</button>
-  </div>
+  <div class="final" id="finalText"></div>
 
+  <div class="feedback" id="feedbackBox">
+  <p>ช่วยเราปรับปรุงหน่อยได้ไหม 💛</p>
+  <input id="feedbackText" placeholder="คุณชอบอะไร / อยากให้ปรับอะไร">
+  <button onclick="submitFeedback()">ส่ง feedback</button>
+</div>
 </div>
 
+<script>
+
+function submitText() {
+  const text = document.getElementById("inputText") .value = "";
+  userMessage = text; // ✅ ย้ายมาหลังประกาศ
+document.getElementById("finalText").style.display = "none";
+document.getElementById("feedbackBox").style.display = "none";
+document.getElementById("optionsBox").style.display = "none";
+if (!feedback.trim()) {
+  alert("เขียน feedback นิดนึงได้น้า 💛");
+  return;
+}
+  const response = document.getElementById("responseBox");
+// reset animation
+response.style.display = "none";
+response.offsetHeight; // force reflow
+response.style.display = "block";
+  response.innerText = "ฉันได้ยินคุณนะ 🤍 สิ่งที่คุณกำลังเจอไม่ง่ายเลย";
+
+  document.getElementById("optionsBox").style.display = "grid";
+}
+
+function selectOption(event, type) {
+userFeeling = type;
+  // ลบ selected ออกจากทุกตัว
+  document.querySelectorAll(".option")
+    .forEach(el => el.classList.remove("selected"));
+
+  // ใส่ selected ให้ตัวที่กด
+  event.target.classList.add("selected");
+
+  let message = "";
+
+  if (type === "tired") {
+    message = "คุณกำลังเริ่มดีขึ้นแล้วนะ 🤍";
+  } else if (type === "calm") {
+    message = "ความนิ่งนี้มีค่ามาก 🌿";
+  } else if (type === "better") {
+    message = "ดีใจที่คุณรู้สึกดีขึ้นนะ 🌸";
+  } else if (type === "ready") {
+    message = "คุณพร้อมก้าวต่อแล้ว 🌻";
+  }
+
+  const final = document.getElementById("finalText");
+  final.style.display = "block";
+  final.innerText = message + "\n\nขอบคุณที่ให้ฉันอยู่ตรงนี้กับคุณ 🤍";
+
+  document.getElementById("feedbackBox").style.display = "block";
+}</script>
 <script src="script.js"></script>
 </body>
 </html>
+
