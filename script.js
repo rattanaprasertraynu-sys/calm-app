@@ -1,3 +1,4 @@
+console.log("NEW VERSION LOADED");
 const API_URL = "https://script.google.com/macros/s/AKfycbzKRkJk_i3XLIpL0XPVRUiWt6M56OFiCW9jZTIqPptyz0fV7dE4SrslZWKosRi0N7Q/exec";
 
 // state
