@@ -1,4 +1,3 @@
-console.log("NEW VERSION LOADED");
 const API_URL = "https://script.google.com/macros/s/AKfycbzKRkJk_i3XLIpL0XPVRUiWt6M56OFiCW9jZTIqPptyz0fV7dE4SrslZWKosRi0N7Q/exec";
 
 // state
@@ -7,9 +6,8 @@ let userFeeling = "";
 
 // STEP 1
 function handleSubmit() {
-  const input = document.getElementById("userInput").value;
+  const input = document.getElementById("inputText").value;
   userMessage = input;
-
   const reflection = getReflection(input);
 
   showText("response", reflection);

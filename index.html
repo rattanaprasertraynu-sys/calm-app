@@ -114,10 +114,13 @@
 
   <div class="response" id="responseBox"></div>
   <div class="options" id="optionsBox">
-    <div class="option" onclick="selectOption(event, 'tired')">🌱 รู้สึกเบาลงนิดหน่อย</div>
-    <div class="option" onclick="selectOption(event, 'calm')">🌿 ใจเริ่มนิ่งขึ้น</div>
-    <div class="option" onclick="selectOption(event, 'better')">🌸 รู้สึกดีขึ้น</div>
-    <div class="option" onclick="selectOption(event, 'ready')">🌻 พร้อมก้าวต่อ</div>
+    
+
+<div class="option" onclick="handleFlower('seed', event)">🌱 รู้สึกเบาลงนิดหน่อย</div>
+<div class="option" onclick="handleFlower('leaf', event)">🌿 ใจเริ่มนิ่งขึ้น</div>
+<div class="option" onclick="handleFlower('blossom', event)">🌸 รู้สึกดีขึ้น</div>
+<div class="option" onclick="handleFlower('sunflower', event)">🌻 พร้อมก้าวต่อ</div>
+
   </div>
 
   <div class="final" id="finalText"></div>
@@ -129,55 +132,6 @@
 </div>
 </div>
 
-<script>
-
-function submitText() {
-  const text = document.getElementById("inputText") .value = "";
-  userMessage = text; // ✅ ย้ายมาหลังประกาศ
-document.getElementById("finalText").style.display = "none";
-document.getElementById("feedbackBox").style.display = "none";
-document.getElementById("optionsBox").style.display = "none";
-if (!feedback.trim()) {
-  alert("เขียน feedback นิดนึงได้น้า 💛");
-  return;
-}
-  const response = document.getElementById("responseBox");
-// reset animation
-response.style.display = "none";
-response.offsetHeight; // force reflow
-response.style.display = "block";
-  response.innerText = "ฉันได้ยินคุณนะ 🤍 สิ่งที่คุณกำลังเจอไม่ง่ายเลย";
-
-  document.getElementById("optionsBox").style.display = "grid";
-}
-
-function selectOption(event, type) {
-userFeeling = type;
-  // ลบ selected ออกจากทุกตัว
-  document.querySelectorAll(".option")
-    .forEach(el => el.classList.remove("selected"));
-
-  // ใส่ selected ให้ตัวที่กด
-  event.target.classList.add("selected");
-
-  let message = "";
-
-  if (type === "tired") {
-    message = "คุณกำลังเริ่มดีขึ้นแล้วนะ 🤍";
-  } else if (type === "calm") {
-    message = "ความนิ่งนี้มีค่ามาก 🌿";
-  } else if (type === "better") {
-    message = "ดีใจที่คุณรู้สึกดีขึ้นนะ 🌸";
-  } else if (type === "ready") {
-    message = "คุณพร้อมก้าวต่อแล้ว 🌻";
-  }
-
-  const final = document.getElementById("finalText");
-  final.style.display = "block";
-  final.innerText = message + "\n\nขอบคุณที่ให้ฉันอยู่ตรงนี้กับคุณ 🤍";
-
-  document.getElementById("feedbackBox").style.display = "block";
-}</script>
 <script src="script.js"></script>
 </body>
 </html>
